@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>매물 목록</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 30px; background-color: #f8f9fa; }
+        .container { max-width: 1100px; }
+        .card {
+            margin: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-title { font-size: 1.1rem; font-weight: bold; color: #0d6efd; }
+        .small-text { font-size: 0.9rem; color: gray; }
+        .header-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; text-align: center; }
+        .card-grid { display: flex; flex-wrap: wrap; justify-content: space-between; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header-title">매물 목록 (랜덤 20개)</div>
+        <form method="get" action="/list" class="mb-4 d-flex justify-content-center">
+            <input type="text" name="q" class="form-control w-50 me-2" placeholder="매물명으로 검색" value="{{ query or '' }}">
+            <button type="submit" class="btn btn-primary">검색</button>
+          </form>
+        {% for house in houses %}
+        <div class="card shadow-sm">
+            <div class="row g-0">
+                {% if house.thumbnail %}
+                <div class="col-md-4">
+                  <img src="{{ house.thumbnail }}" alt="thumbnail" class="img-fluid rounded-start"
+                       style="width: 100%; height: 100%; object-fit: cover; max-height: 140px;">
+                </div>
+                {% endif %}
+              <div class="col-md-8">
+                <div class="card-body">
+                  <a href="/recommend_ui?house_num={{ house.house_num | int }}" class="card-title d-block">
+                    {{ house.title }}
+                  </a>
+                  <p class="small-text">
+                    {{ house.gu }} {{ house.dong }}<br>
+                    가격: {{ house.price }}<br>
+                    면적: {{ house.space }}평
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        <!-- <div class="row">
+            {% for house in houses %}
+            <div class="col-12 mb-4">
+              <div class="card shadow-sm h-100" onclick="location.href='/recommend_ui?house_num={{ house.house_num | int }}'">
+                <div class="card-body">
+                  <h6 class="card-title text-primary">{{ house.title }}</h6>
+                  <p class="small text-muted">
+                    {{ house.gu }} {{ house.dong }}<br>
+                    가격: {{ house.price }}<br>
+                    면적: {{ house.space }}평
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="row">
+            {% for house in houses %}
+            <div class="col-12 mb-4">
+              <div class="card shadow-sm h-100" onclick="location.href='/recommend_ui?house_num={{ house.house_num | int }}'">
+                <div class="card-body">
+                  <h6 class="card-title text-primary">{{ house.title }}</h6>
+                  <p class="small text-muted">
+                    {{ house.gu }} {{ house.dong }}<br>
+                    가격: {{ house.price }}<br>
+                    면적: {{ house.space }}평
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div> -->
+    </div>
+</body>
+</html>
