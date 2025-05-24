@@ -25,11 +25,6 @@
 <body>
     <div class="container">
         <div class="header-title">매물 목록 (랜덤 20개)</div>
-        <form method="get" action="/list" class="mb-4 d-flex justify-content-center">
-            <input type="text" name="q" class="form-control w-50 me-2" placeholder="매물명으로 검색" value="{{ query or '' }}">
-            <button type="submit" class="btn btn-primary">검색</button>
-          </form>
-        {% for house in houses %}
         <div class="card shadow-sm">
             <div class="row g-0">
                 {% if house.thumbnail %}
@@ -53,39 +48,6 @@
             </div>
           </div>
         {% endfor %}
-
-        <!-- <div class="row">
-            {% for house in houses %}
-            <div class="col-12 mb-4">
-              <div class="card shadow-sm h-100" onclick="location.href='/recommend_ui?house_num={{ house.house_num | int }}'">
-                <div class="card-body">
-                  <h6 class="card-title text-primary">{{ house.title }}</h6>
-                  <p class="small text-muted">
-                    {{ house.gu }} {{ house.dong }}<br>
-                    가격: {{ house.price }}<br>
-                    면적: {{ house.space }}평
-                  </p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-          <div class="row">
-            {% for house in houses %}
-            <div class="col-12 mb-4">
-              <div class="card shadow-sm h-100" onclick="location.href='/recommend_ui?house_num={{ house.house_num | int }}'">
-                <div class="card-body">
-                  <h6 class="card-title text-primary">{{ house.title }}</h6>
-                  <p class="small text-muted">
-                    {{ house.gu }} {{ house.dong }}<br>
-                    가격: {{ house.price }}<br>
-                    면적: {{ house.space }}평
-                  </p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div> -->
     </div>
 </body>
 </html>
