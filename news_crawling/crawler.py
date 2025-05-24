@@ -56,7 +56,7 @@ class UrlCrawling:
 
         soup = BeautifulSoup(browser.page_source, "html.parser")
         a_tag_list.extend(soup.select(".section_latest ._TEMPLATE .sa_thumb_link"))
-        a_tag_list = a_tag_list[:10]  # test
+        #  a_tag_list = a_tag_list[:10]  # test
 
         for a in a_tag_list:
             urls.append(a["href"])
