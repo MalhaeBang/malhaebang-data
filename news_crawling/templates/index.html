@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>오늘의 이슈</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      background-color: #f7f7f7;
+      padding: 40px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h2 {
+      color: #1a237e;
+    }
+    .news-box {
+      background: #fff;
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+    .news-box a {
+      text-decoration: none;
+      color: #111;
+      font-size: 16px;
+    }
+    .tooltip-container {
+      position: relative;
+      display: inline-block;
+    }
+    .tooltip-text {
+      visibility: hidden;
+      white-space: nowrap;
+      background-color: #eee;  /* 밝은 회색 배경 */
+      color: #333;             /* 짙은 회색 글씨 */
+      font-size: 11px;        
+      text-align: left;
+      padding: 6px 10px;
+      border-radius: 6px;
+      position: absolute;
+      z-index: 1;
+      top: 125%;               /* 아래쪽에 표시 */
+      left: 50px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    .tooltip-container:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    .more-link {
+      font-size: 14px;
+      background: none;
+      border: none;
+      color: #555;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .more-link:hover {
+    color: #1a237e;
+    font-weight: bold;
+    text-decoration: none;
+    }
+    .news-box:hover {
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>오늘의 이슈 📰</h2>
+    <a class="more-link" href="{{ url_for('more') }}?{% for url in exclude_urls %}exclude_urls={{ url }}{% if not loop.last %}&{% endif %}{% endfor %}">+ 기사 더보기</a>
+  </div>
+
+  {% for news in main %}
+    <div class="news-box">
+      <div class="tooltip-container">
+        <a href="{{ news.url }}" target="_blank">{{ news.title }}</a>
+        <div class="tooltip-text">{{ news.summary }}</div>
+      </div>
+    </div>
+  {% endfor %}
+</body>
+</html>
