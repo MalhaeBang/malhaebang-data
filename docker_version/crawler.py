@@ -65,7 +65,7 @@ class UrlCrawling:
             with open(f"/tmp/debug_newslist_{safe_name}.html", "w", encoding="utf-8") as f:
                 f.write(browser.page_source)
 
-            for a in a_tag_list[:10]:
+            for a in a_tag_list:
                 href = a.get("href")
                 if href and href.startswith("https://n.news.naver.com/"):
                     urls.append(href)
