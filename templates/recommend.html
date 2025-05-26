@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>{{ target.title if target else '유사 매물 추천' }}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     body { background-color: #f8f9fa; font-family: 'Noto Sans KR', sans-serif; }
     .container-main { position: relative; max-width: 700px; margin: 20px auto; background: white; padding: 0; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
@@ -73,6 +74,20 @@
     .close-button:hover {
       color: #333; /* Darker on hover */
     }
+
+    /* 기존 스타일에 추가 */
+    .tooltip-inner {
+        max-width: 400px;  /* 너비 증가 */
+        text-align: left;
+        padding: 12px;     /* 패딩도 약간 증가 */
+    }
+    .tooltip-inner b {
+        color: #0d6efd;
+    }
+    .tooltip-inner small {
+        color: #6c757d;
+        font-size: 0.85em;
+    }
   </style>
 </head>
 <body>
@@ -136,7 +151,20 @@
       <div class="info_article_feature">
         {% if target.category_name %}<span class="feature">{{ target.category_name }}</span>{% endif %}
         {% if target.gu %}<span class="feature">{{ target.gu }} {{ target.dong }}</span>{% endif %}
-        {% if target.safety_grade %}<span class="feature">{{ target.safety_grade }}</span>{% endif %}
+        {% if target.safety_grade %}
+        <span class="feature" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-html="true"
+              title="<b>[ 매물 안전 등급 ]</b><br><br>
+              🟢 매우안전 : 모든 정보가 정확하고 신뢰할 수 있는 매물<br>
+              🔵 안전 : 대부분의 정보가 정확하나 일부 확인 필요<br>
+              🟡 보통 : 정보 누락이 있거나 일부 이상치 존재<br>
+              🟠 주의 : 정보 신뢰도가 낮거나 중복 의심<br>
+              🔴 위험 : 허위 및 사기 매물 의심<br><br>
+              <small>※ 평가 항목: 가격 적정성, 정보 완성도, 중복 여부, 건물용도 적합성, 전세가율</small>">
+            {{ target.safety_grade }} 
+            <i class="bi bi-info-circle" style="color: #5e5e5e; margin-right: 4px;"></i>
+        </span>
+        {% endif %}
       </div>
     </div>
 
@@ -232,5 +260,12 @@
 </div> <!-- .container-main -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 툴크 초기화
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
 </body>
 </html>
