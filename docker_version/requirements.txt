@@ -1,0 +1,9 @@
+flask
+pandas
+selenium
+beautifulsoup4
+tqdm
+langdetect
+scikit-learn
+konlpy
+JPype1

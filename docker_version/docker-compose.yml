@@ -1,0 +1,5 @@
+services:
+  news:
+    build: .
+    ports:
+      - "8008:8001"
