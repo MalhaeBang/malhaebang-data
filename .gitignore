@@ -1,0 +1,8 @@
+1_db_preprocessing.ipynb
+test.ipynb
+venv/
+db/
+*.db
+config.py
+__pycache__/
+전세가율/
