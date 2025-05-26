@@ -1,5 +1,5 @@
 
-👀 만약 docker에서 data.csv가 directory로 인식해서 꼬인다면
+👀 만약 docker가 data.csv를 directory로 인식해버린다면
 
 $ docker compose down --volumes --rmi all
 
