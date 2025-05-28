@@ -185,12 +185,19 @@ def recommend_ui():
     # Limit to top_k results after all filtering
     result_df = result_df.head(top_k)
 
+    # # items 출력을 위한 코드 추가
+    # items = result_df.to_dict(orient="records")
+    # print("\n=== 추천된 매물 목록 ===")
+    # for idx, item in enumerate(items, 1):
+    #     print(f"{idx}. {item['title']} | 가격: {item['price']} | 유사도: {item['similarity']}")
+
     return render_template(
         "recommend.html", 
         target=target_dict, 
         title=target_dict['title'], 
-        house_num=current_house_id, 
+        house_num=current_house_id,
         items=result_df.to_dict(orient="records"),
+        #items=items,
         loads=json.loads
     )
 

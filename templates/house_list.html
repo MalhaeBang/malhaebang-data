@@ -25,6 +25,7 @@
 <body>
     <div class="container">
         <div class="header-title">매물 목록 (랜덤 20개)</div>
+        {% for house in houses %}
         <div class="card shadow-sm">
             <div class="row g-0">
                 {% if house.thumbnail %}
