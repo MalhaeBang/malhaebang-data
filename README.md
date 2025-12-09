@@ -20,7 +20,7 @@
 
 ---
 
-**🔁 매물 수집 파이프라인** `crawling.ipynb`
+**🔁 매물 데이터 수집 파이프라인** `crawling.ipynb`
 
 1. 행정구역 기반 매물 수집
    - 서울시 전체 구/동 행정코드와 명칭 확보
@@ -39,7 +39,7 @@
    - 응답 JSON에서 `latitude`, `longitude` 필드 파싱
    - 위치 정보는 클릭 이후 로딩되므로 GUI 기반 진입 필수
 
-4. MySQL 저장
+4. MySQL 적재
    - 수집된 매물 데이터를 정규화된 컬럼에 저장
    - 기존 항목 외에도 `safety_score`, `embedding`, `gpt_description` 필드를 포함한 구조 확보
 
